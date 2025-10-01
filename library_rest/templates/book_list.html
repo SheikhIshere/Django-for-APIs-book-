@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>book list</title>
+</head>
+<body>
+    <h1>this is book list</h1>
+
+    {% for book in book_list %}
+    <br>
+    <hr>
+    <ul>
+        <li><h1>{{ book.title }}</h1></li>
+        <li>{{ book.subtitle }}</li>
+        <li>{{ book.author }}</li>
+        <li>{{ book.isbn }}</li>
+    <hr>
+    </ul>
+    <br>
+    {% endfor %}
+
+    <!-- title = models.CharField(max_length = 250) -->
+    <!-- subtitle = models.CharField(max_length = 250) -->
+    <!-- author = models.CharField(max_length = 100) -->
+    <!-- isbn = models.CharField(max_length = 13) -->
+</body>
+</html>
