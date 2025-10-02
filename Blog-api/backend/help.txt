@@ -8,3 +8,7 @@ touch posts/serializers.py
 
 
 python manage.py makemigrations; python manage.py migrate; python manage.py createsuperuser
+
+random
+username: testuser2
+password: slkejr_l343sskfjd

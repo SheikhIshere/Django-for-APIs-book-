@@ -1,0 +1,69 @@
+the thing is here i am login or logout it dosen't matter whhen i amm as admin or normal user i am just able to do crud in my api and no is there to stop me why 
+
+
+here is modes.py
+------------------
+from django.db import models
+from django.contrib.auth.models import User
+
+# Create your models here.
+
+
+class Post(models.Model):
+    author = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE
+    )
+    title = models.CharField(max_length = 50)
+    body = models.TextField()
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
+    
+
+    def __str__(self):
+        return self.title
+    
+views.py
+-------
+# posts/serializers.py
+from rest_framework import serializers
+from .models import Post
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = [
+            'id', 
+            'author',
+            'title', 
+            'body'
+        ]  # Hide author and timestamps
+       
+       
+apps/urls.py
+------------
+from django.urls import path
+from .views import PostList, PostDetail
+
+urlpatterns = [
+    path('', PostList.as_view(), name='post-list'),           # GET all / POST new
+    path('<int:pk>/', PostDetail.as_view(), name='post-detail'),  # GET/PUT/DELETE single
+]
+
+
+project/urls.py
+-------------------
+
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path('api/v1/', include('posts.urls')),
+    path('api-auth/', include('rest_framework.urls'))
+]
