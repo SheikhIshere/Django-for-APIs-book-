@@ -1,0 +1,10 @@
+python -m venv .venv
+source .venv/Scripts/activate
+pip install django
+django-admin startproject blog_project .
+django-admin startapp posts
+touch posts/urls.py
+touch posts/serializers.py
+
+
+python manage.py makemigrations; python manage.py migrate; python manage.py createsuperuser
