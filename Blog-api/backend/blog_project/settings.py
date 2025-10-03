@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     # 3rd party packege
     'rest_framework',
     'rest_framework.authtoken', # this for generate token when some one logged in
+    
+    "drf_spectacular",              # <- add this
+
     'allauth', #from all auth
     'allauth.account', #from all auth
     'allauth.socialaccount', #from all auth
@@ -163,3 +166,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 
+
+
+INSTALLED_APPS += ['corsheaders']
+
+MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware'] + MIDDLEWARE
+
+CORS_ALLOW_ALL_ORIGINS = True   # DEV ONLY
